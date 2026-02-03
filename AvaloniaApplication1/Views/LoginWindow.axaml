@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:AvaloniaApplication1.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication1.Views.LoginWindow"
+        x:DataType="viewModels:CreateUserViewModel"
+        Title="LoginWindow">
+    <Window.DataContext>
+        <viewModels:CreateUserViewModel/>
+    </Window.DataContext>
+    <StackPanel>
+        <StackPanel DataContext="{Binding CreateUser}">
+            <Label Content="Введите логин"/>
+            <TextBox Text="{Binding Login}"/>
+            <Label Content="Введите пароль"/>
+            <TextBox Text="{Binding Password}" PasswordChar="*"/>
+            <Button Content="Войти"/>
+        </StackPanel>
+        <Button Content="Создать" Command="{Binding CreateCommand}"/>
+    </StackPanel>
+    </Window>
