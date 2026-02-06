@@ -14,10 +14,19 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.2" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="README\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="README\020226.pdf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
