@@ -1,11 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Auth;
+using WebApplication1.CQRS.DTO;
 using WebApplication1.DB;
-using WebApplication1.Model;
 
 namespace WebApplication1.Controllers;
 
@@ -43,9 +44,16 @@ public class AuthController : Controller
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> Profile()
     {
-        var currentUser = 
+        var id = this.HttpContext.User.Claims.First().Value;
+        
+        var user = await _context.Credentials.FirstOrDefaultAsync(s => s.Id.ToString() == id);
+        if (user == null)
+            return new NotFoundResult();
+        
+        return Ok(user);
     }
     
     

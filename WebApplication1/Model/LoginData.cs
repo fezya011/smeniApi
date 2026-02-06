@@ -1,4 +1,4 @@
-namespace WebApplication1.Model;
+namespace WebApplication1.CQRS.DTO;
 
 public class LoginData
 {
