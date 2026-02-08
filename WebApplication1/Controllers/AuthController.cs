@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Auth;
 using WebApplication1.CQRS.DTO;
 using WebApplication1.DB;
+using WebApplication1.DTO.AuthDTO;
 
 namespace WebApplication1.Controllers;
 
@@ -43,17 +44,37 @@ public class AuthController : Controller
         return new OkObjectResult(token);
     }
 
-    [HttpGet]
     [Authorize]
-    public async Task<IActionResult> Profile()
+    [HttpGet("profile")]
+    public async Task<ActionResult<ProfileResponse>> GetProfile()
     {
-        var id = this.HttpContext.User.Claims.First().Value;
-        
-        var user = await _context.Credentials.FirstOrDefaultAsync(s => s.Id.ToString() == id);
-        if (user == null)
-            return new NotFoundResult();
-        
-        return Ok(user);
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userIdClaim))
+        {
+            return Unauthorized();
+        }
+
+        var userId = int.Parse(userIdClaim);
+        var credential = await _context.Credentials
+            .Include(c => c.Employee)
+            .FirstOrDefaultAsync(c => c.Id == userId);
+
+        if (credential == null || credential.Employee == null)
+        {
+            return NotFound("Не нашли....");
+        }
+
+        return Ok(new ProfileResponse
+        {
+            Employee = new EmployeeProfile
+            {
+                Id = credential.Employee.Id,
+                FirstName = credential.Employee.FirstName,
+                LastName = credential.Employee.LastName,
+                Position = credential.Employee.Position
+            },
+            Role = credential.Role
+        });
     }
     
     

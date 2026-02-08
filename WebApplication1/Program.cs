@@ -33,6 +33,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Configure the HTTP request pipeline.
