@@ -6,9 +6,9 @@ using WebApplication1.DTO.ShiftDTO;
 
 namespace WebApplication1.Controllers;
 
-[ApiController]
+    [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+
     public class ShiftsController : ControllerBase
     {
         private readonly Smeni1135Context _context;

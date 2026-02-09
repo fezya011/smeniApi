@@ -10,7 +10,6 @@ namespace WebApplication1.Controllers;
 
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class EmployeesController : ControllerBase
     {
         private readonly Smeni1135Context _context;
