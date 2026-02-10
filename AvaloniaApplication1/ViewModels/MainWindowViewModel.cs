@@ -1,6 +1,8 @@
-﻿namespace AvaloniaApplication1.ViewModels;
+﻿using AvaloniaApplication1.VmTools;
 
-public partial class MainWindowViewModel : ViewModelBase
+namespace AvaloniaApplication1.ViewModels;
+
+public class MainWindowViewModel : BaseVM
 {
-    public string Greeting { get; } = "Welcome to Avalonia!";
+    
 }

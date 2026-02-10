@@ -2,10 +2,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:AvaloniaApplication1.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication1.Views.ShiftsView"
-        Title="ShiftsView">
-        <Grid>
-                
+        Title="ShiftsView"
+        x:DataType="viewModels:ShiftsViewModel">
+        
+        
+        <Grid>         
+                <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Shifts}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                                <DataGridTextColumn Header="Время начала" Binding="{Binding StartDateTime}"/>
+                                <DataGridTextColumn Header="Время окончания" Binding="{Binding EndDateTime}"/>
+                                <DataGridTextColumn Header="Сотрудник" Binding="{Binding EmployeeId}"/>
+                                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                        <MenuItem Header="Удалить"/>
+                                        <MenuItem Header="Редактировать"/>
+                                </ContextMenu>
+                        </DataGrid.ContextMenu>
+                </DataGrid>
+                <Button Content="Добавить смену" />
         </Grid>
 </Window>

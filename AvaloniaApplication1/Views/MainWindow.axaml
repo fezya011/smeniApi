@@ -14,17 +14,25 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    <Grid>
     <TabControl>
-        <TabItem>
+        <TabItem Header=" Сотрудники"> 
             <StackPanel >
-                <TextBlock Text="Сотрудники"/>
-                <TextBox/>
-                <TextBlock Text="Смены"/>
-                <TextBox/>
                 <Button Content="Выйти"/>
             </StackPanel>
         </TabItem>
+        <TabItem Header="Смены">
+        </TabItem>
+        <StackPanel>
+            <TextBlock Text="Статус:" />
+            <TextBlock Text=""/>
+        </StackPanel>
+
+        
     </TabControl>
 
+      <Button Content="Выйти"/>  
+    </Grid>
+        
 
 </Window>

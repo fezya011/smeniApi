@@ -23,6 +23,7 @@ public class AuthController : Controller
     }
     
     [HttpPost]
+    [Route("login")]
     public async Task<ActionResult> Login(LoginData loginData)
     {
         var user = await _context.Credentials.FirstOrDefaultAsync(s=>s.Username ==  loginData.Login && s.PasswordHash == loginData.Password);

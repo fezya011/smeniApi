@@ -5,19 +5,19 @@
         xmlns:viewModels="clr-namespace:AvaloniaApplication1.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication1.Views.LoginWindow"
-        x:DataType="viewModels:CreateUserViewModel"
+        x:DataType="viewModels:LoginViewModel"
         Title="LoginWindow">
-    <Window.DataContext>
-        <viewModels:CreateUserViewModel/>
-    </Window.DataContext>
+    
+    
     <StackPanel>
-        <StackPanel DataContext="{Binding CreateUser}">
+        <StackPanel>
             <Label Content="Введите логин"/>
-            <TextBox Text="{Binding Login}"/>
+            <TextBox Text="{Binding LoginData.Username}"/>
             <Label Content="Введите пароль"/>
-            <TextBox Text="{Binding Password}" PasswordChar="*"/>
-            <Button Content="Войти"/>
+            <TextBox Text="{Binding LoginData.Password}" PasswordChar="*"/>
+            <Button Content="Войти" Command="{Binding LoginButton}"/>
         </StackPanel>
-        <Button Content="Создать" Command="{Binding CreateCommand}"/>
+        
+        <CheckBox Content="Запомнить сессию"/>
     </StackPanel>
     </Window>

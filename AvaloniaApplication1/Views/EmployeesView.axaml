@@ -2,13 +2,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:AvaloniaApplication1.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication1.Views.EmployeesView"
+        x:DataType="viewModels:EmployeesViewModel"
         Title="EmployeesView">
     
-    
     <Grid>
-       
+        <TextBlock Text="Поиск"/>
+        <TextBox />
+        
+        <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Employees}" SelectedItem="{Binding SelectedEmployee}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Должность" Binding="{Binding Position}"/>
+                    <DataGridTextColumn Header="Статус" Binding="{Binding IsActive}"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить"/>
+                    <MenuItem Header="Редактировать"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        
+        <Button Content="Добавить"/>
     </Grid>
      
 </Window>

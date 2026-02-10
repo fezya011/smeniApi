@@ -13,7 +13,7 @@ public class Http
         if (client == null)
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7081/");
+            client.BaseAddress = new Uri("https://localhost:5110/");
         }
 
         if (ActiveUser.Token != null)
